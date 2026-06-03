@@ -5,6 +5,7 @@ defineProps<{ isOpen: boolean }>()
 const emit = defineEmits<{
   close: []
   submit: [data: ReservationData]
+  openPayment: [data: ReservationData]
 }>()
 
 interface ReservationData {
@@ -38,18 +39,10 @@ const handleSubmit = async () => {
   }
 
   isSubmitting.value = true
-
-  const whatsappNumber = '693747572'
-  const message = `Bonjour,\n\nNouvelle demande de réservation:\n\nNom: ${form.value.fullName}\nEmail: ${form.value.email}\nDate: ${form.value.date}\nVéhicule: ${vehicles.find(v => v.value === form.value.vehicle)?.label}\n${form.value.message ? `Message: ${form.value.message}` : ''}`
-
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
-
+  emit('openPayment', form.value)
   setTimeout(() => {
-    window.open(whatsappUrl, '_blank')
-    emit('close')
-    form.value = { fullName: '', email: '', date: '', vehicle: 'berline', message: '' }
     isSubmitting.value = false
-  }, 500)
+  }, 300)
 }
 
 const handleClose = () => {
