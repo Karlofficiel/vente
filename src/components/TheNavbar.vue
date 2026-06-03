@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 
+<<<<<<< HEAD
 const emit = defineEmits<{ openReservation: [] }>()
+=======
+>>>>>>> fac89632a9f0b4dec53fbc7388e5245151af4bd4
 const scrolled = ref(false)
 const menuOpen = ref(false)
 
@@ -45,7 +48,11 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
           class="navbar__link"
           @click="menuOpen = false"
         >{{ link.label }}</a>
+<<<<<<< HEAD
         <button type="button" class="btn-gold navbar__cta" @click="emit('openReservation'); menuOpen = false">Réserver</button>
+=======
+        <a href="#reserver" class="btn-gold navbar__cta" @click="menuOpen = false">Réserver</a>
+>>>>>>> fac89632a9f0b4dec53fbc7388e5245151af4bd4
       </nav>
 
       <button class="navbar__burger" :class="{ open: menuOpen }" @click="menuOpen = !menuOpen" aria-label="Menu">
