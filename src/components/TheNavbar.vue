@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 
-<<<<<<< HEAD
-const emit = defineEmits<{ openReservation: [] }>()
-=======
->>>>>>> fac89632a9f0b4dec53fbc7388e5245151af4bd4
+// Déclaration de l'événement pour ouvrir la réservation
+const emit = defineEmits<{
+  (e: 'open-reservation'): void
+}>()
+
 const scrolled = ref(false)
 const menuOpen = ref(false)
 
@@ -48,11 +49,14 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
           class="navbar__link"
           @click="menuOpen = false"
         >{{ link.label }}</a>
-<<<<<<< HEAD
-        <button type="button" class="btn-gold navbar__cta" @click="emit('openReservation'); menuOpen = false">Réserver</button>
-=======
-        <a href="#reserver" class="btn-gold navbar__cta" @click="menuOpen = false">Réserver</a>
->>>>>>> fac89632a9f0b4dec53fbc7388e5245151af4bd4
+        
+        <button 
+          type="button" 
+          class="btn-gold navbar__cta" 
+          @click="emit('open-reservation'); menuOpen = false"
+        >
+          Réserver
+        </button>
       </nav>
 
       <button class="navbar__burger" :class="{ open: menuOpen }" @click="menuOpen = !menuOpen" aria-label="Menu">
@@ -149,6 +153,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   font-size: 0.72rem;
   padding: 0.6rem 1.4rem;
   letter-spacing: 0.12em;
+  cursor: pointer;
 }
 
 .navbar__burger {

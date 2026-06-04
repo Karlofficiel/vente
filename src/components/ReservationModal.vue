@@ -1,16 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-defineProps<{ isOpen: boolean }>()
-const emit = defineEmits<{
-  close: []
-  submit: [data: ReservationData]
-<<<<<<< HEAD
-=======
-  openPayment: [data: ReservationData]
->>>>>>> fac89632a9f0b4dec53fbc7388e5245151af4bd4
-}>()
-
+// Interface pour les données de réservation
 interface ReservationData {
   fullName: string
   email: string
@@ -18,6 +9,14 @@ interface ReservationData {
   vehicle: string
   message?: string
 }
+
+defineProps<{ isOpen: boolean }>()
+
+// Déclaration propre des événements (emits)
+const emit = defineEmits<{
+  (e: 'close'): void
+  (e: 'open-payment', data: ReservationData): void
+}>()
 
 const form = ref<ReservationData>({
   fullName: '',
@@ -36,29 +35,20 @@ const vehicles = [
 ]
 
 const handleSubmit = async () => {
+  // Correction de la condition de validation (ajout des ||)
   if (!form.value.fullName || !form.value.email || !form.value.date) {
     alert('Veuillez remplir tous les champs obligatoires')
     return
   }
 
   isSubmitting.value = true
-<<<<<<< HEAD
-
-  const whatsappNumber = '693747592'
-  const message = `Bonjour,\n\nNouvelle demande de réservation:\n\nNom: ${form.value.fullName}\nEmail: ${form.value.email}\nDate: ${form.value.date}\nVéhicule: ${vehicles.find(v => v.value === form.value.vehicle)?.label}\n${form.value.message ? `Message: ${form.value.message}` : ''}`
-
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
-
-  window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
-  emit('close')
-  form.value = { fullName: '', email: '', date: '', vehicle: 'berline', message: '' }
-  isSubmitting.value = false
-=======
-  emit('openPayment', form.value)
+  
+  // On envoie les données vers le module de paiement
+  emit('open-payment', form.value)
+  
   setTimeout(() => {
     isSubmitting.value = false
   }, 300)
->>>>>>> fac89632a9f0b4dec53fbc7388e5245151af4bd4
 }
 
 const handleClose = () => {
@@ -73,7 +63,8 @@ const handleClose = () => {
     <div class="modal" @click.stop>
       <button class="modal__close" @click="handleClose" aria-label="Fermer">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
         </svg>
       </button>
 
@@ -138,13 +129,13 @@ const handleClose = () => {
             id="message"
             v-model="form.message"
             class="form-input form-textarea"
-            placeholder="Détails supplémentaires..."
+            placeholder="Précisez des détails ou des demandes spécifiques..."
             rows="3"
-          />
+          ></textarea>
         </div>
 
         <button type="submit" class="btn-gold modal__submit" :disabled="isSubmitting">
-          {{ isSubmitting ? 'Envoi...' : 'Confirmer la Demande' }}
+          {{ isSubmitting ? 'Traitement...' : 'Continuer vers le paiement' }}
         </button>
       </form>
     </div>
@@ -155,62 +146,38 @@ const handleClose = () => {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  animation: fadeIn 0.2s ease;
-  backdrop-filter: blur(2px);
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  padding: 1.5rem;
 }
 
 .modal {
-  background: var(--color-bg-card);
-  border: 1px solid var(--color-border-gold);
+  background: #0d0d0d;
+  border: 1px solid var(--color-border-gold, #c5a880);
   width: 100%;
-  max-width: 520px;
+  max-width: 650px;
   padding: 2.5rem;
   position: relative;
-  animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  border-radius: 4px;
 }
 
 .modal__close {
   position: absolute;
-  top: 1.2rem;
-  right: 1.2rem;
+  top: 1rem;
+  right: 1rem;
   background: none;
   border: none;
-  color: var(--color-text-muted);
+  color: #fff;
   cursor: pointer;
-  padding: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.2s;
+  opacity: 0.7;
+  transition: opacity 0.2s;
 }
 
 .modal__close:hover {
-  color: var(--color-gold);
+  opacity: 1;
 }
 
 .modal__header {
@@ -219,24 +186,22 @@ const handleClose = () => {
 }
 
 .modal__label {
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  color: var(--color-gold);
-  font-weight: 600;
-  margin-bottom: 0.6rem;
+  color: var(--color-gold, #c5a880);
+  letter-spacing: 0.1em;
 }
 
 .modal__title {
   font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
-  color: var(--color-text);
-  margin-bottom: 0.3rem;
+  font-size: 1.8rem;
+  color: #fff;
+  margin: 0.5rem 0;
 }
 
 .modal__subtitle {
-  font-size: 0.8rem;
-  color: var(--color-text-muted);
+  color: #888;
+  font-size: 0.9rem;
 }
 
 .modal__form {
@@ -248,7 +213,7 @@ const handleClose = () => {
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: 1.2rem;
 }
 
 .form-group {
@@ -258,69 +223,57 @@ const handleClose = () => {
 }
 
 .form-label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-gold);
+  font-size: 0.8rem;
+  color: #ccc;
 }
 
 .form-input {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--color-border);
-  color: var(--color-text);
-  padding: 0.7rem 0.9rem;
-  font-size: 0.85rem;
-  font-family: inherit;
-  transition: border-color 0.2s, background 0.2s;
+  background: #141414;
+  border: 1px solid #222;
+  color: #fff;
+  padding: 0.8rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s;
 }
 
 .form-input:focus {
-  outline: none;
-  border-color: var(--color-gold);
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.form-input::placeholder {
-  color: var(--color-text-subtle);
+  border-color: var(--color-gold, #c5a880);
 }
 
 .form-textarea {
-  resize: vertical;
-  line-height: 1.5;
+  resize: none;
 }
 
 .modal__submit {
-  margin-top: 0.5rem;
-  font-size: 0.8rem;
-  padding: 0.85rem 1.5rem;
-  letter-spacing: 0.15em;
   width: 100%;
-  transition: background 0.25s, opacity 0.25s;
+  padding: 1rem;
+  background: var(--color-gold, #c5a880);
+  color: #000;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  transition: background 0.2s;
+  margin-top: 1rem;
+}
+
+.modal__submit:hover {
+  background: #d4b990;
 }
 
 .modal__submit:disabled {
-  opacity: 0.7;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
-.modal__submit:not(:disabled):hover {
-  background: var(--color-gold-light);
-}
-
 @media (max-width: 600px) {
-  .modal {
-    width: 90%;
-    max-width: none;
-    padding: 2rem 1.5rem;
-  }
-
   .form-row {
     grid-template-columns: 1fr;
-  }
-
-  .modal__title {
-    font-size: 1.2rem;
   }
 }
 </style>
