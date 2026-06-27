@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import v2 from "../assets/v2.jpg";
+
 interface Engagement {
   icon: string
   title: string
@@ -13,12 +15,12 @@ const engagements: Engagement[] = [
   },
   {
     icon: 'eye-off',
-    title: 'Sécurité Maximale',
+    title: 'Confidentialité Totale',
     description: 'Votre vie privée est notre priorité absolue. Discrétion et confidentialité sont nos maîtres mots.',
   },
   {
     icon: 'clock',
-    title: 'Sécurité Maximale',
+    title: 'Disponibilité 24/7',
     description: 'Un service de conciergerie voiture coûte tout moment, pour répondre à tous vos besoins.',
   },
 ]
@@ -40,10 +42,10 @@ const engagements: Engagement[] = [
                 <svg v-if="item.icon === 'shield'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                 </svg>
-                <svg v-else-if="item.icon === 'eye-off'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+               <svg v-else-if="item.icon === 'eye-off'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/>
                   <line x1="1" y1="1" x2="23" y2="23"/>
-                </svg>
+                </svg>  
                 <svg v-else width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
                 </svg>
@@ -59,15 +61,15 @@ const engagements: Engagement[] = [
 
       <div class="engagements__image-col">
         <img
-          src="https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=800"
+          :src="v2"
           alt="Véhicule de prestige"
           class="engagements__img"
         />
-        <div class="engagements__img-badge">
+        <!-- <div class="engagements__img-badge">
           <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
           </svg>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>

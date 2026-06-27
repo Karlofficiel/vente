@@ -38,7 +38,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.68 19.79 19.79 0 01.03 1.05 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.11 7.82a16 16 0 006.06 6.06l1.18-1.18a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/>
         </svg>
-        <span>+33 1 33 46 87 88</span>
+        <span>+237 699 82 02 63</span>
       </div>
 
       <nav class="navbar__nav" :class="{ 'navbar__nav--open': menuOpen }">

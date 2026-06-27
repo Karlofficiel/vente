@@ -1,13 +1,15 @@
 <script setup lang="ts">
 const stats = [
-  { value: '10+', label: "Années d'Excellence" },
-  { value: '5000+', label: 'Clients Satisfaits' },
+  { value: '5+', label: "Années d'Excellence" },
+  { value: '320+', label: 'Clients Satisfaits' },
 ]
 
 const badges = [
   { icon: 'shield', label: 'Confiance', sub: 'Qualité certifiée.' },
   { icon: 'star', label: 'Prestige', sub: 'Qualité à toutes.' },
 ]
+
+import v3 from "../assets/v3.jpg";
 </script>
 
 <template>
@@ -16,8 +18,8 @@ const badges = [
       <div class="about__image-col">
         <div class="about__img-wrap">
           <img
-            src="https://images.pexels.com/photos/7144212/pexels-photo-7144212.jpeg?auto=compress&cs=tinysrgb&w=800"
-            alt="Chauffeur professionnel"
+            :src="v3"
+            alt="Notre Parking de Véhicules de Prestige"
             class="about__img"
           />
           <div class="about__stat-badge">

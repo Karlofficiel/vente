@@ -1,13 +1,14 @@
 <script setup lang="ts">
+import v1 from "../assets/v1.jpg";
 </script>
 
 <template>
   <section id="accueil" class="hero">
     <div class="hero__bg">
       <img
-        src="https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1920"
+        :src="v1"
         alt="Luxury car"
-        class="hero__bg-img"
+        class="hero__bg-img"  
       />
       <div class="hero__overlay"></div>
     </div>

@@ -15,7 +15,6 @@ defineProps<{ isOpen: boolean }>()
 // Déclaration propre des événements (emits)
 const emit = defineEmits<{
   (e: 'close'): void
-  (e: 'open-payment', data: ReservationData): void
 }>()
 
 const form = ref<ReservationData>({
@@ -35,19 +34,22 @@ const vehicles = [
 ]
 
 const handleSubmit = async () => {
-  // Correction de la condition de validation (ajout des ||)
   if (!form.value.fullName || !form.value.email || !form.value.date) {
     alert('Veuillez remplir tous les champs obligatoires')
     return
   }
 
   isSubmitting.value = true
-  
-  // On envoie les données vers le module de paiement
-  emit('open-payment', form.value)
-  
+
+  const whatsappNumber = '693747572'
+  const message = `Nouvelle demande de réservation:\n\nNom: ${form.value.fullName}\nEmail: ${form.value.email}\nDate: ${form.value.date}\nVéhicule: ${form.value.vehicle}\nMessage: ${form.value.message || 'Aucun message'}`
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
+
+  window.open(whatsappUrl, '_blank')
+
   setTimeout(() => {
     isSubmitting.value = false
+    emit('close')
   }, 300)
 }
 
@@ -135,7 +137,7 @@ const handleClose = () => {
         </div>
 
         <button type="submit" class="btn-gold modal__submit" :disabled="isSubmitting">
-          {{ isSubmitting ? 'Traitement...' : 'Continuer vers le paiement' }}
+          {{ isSubmitting ? 'Traitement...' : 'Envoyer la réservation' }}
         </button>
       </form>
     </div>

@@ -45,19 +45,19 @@ const socials = [
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
             </svg>
-            <span>122 Avenue des Champs-Élysées, Paris, France</span>
+            <span> Garde four en face de l'ecole des Sapeurs Pompiers Terminus , Douala Cameroun</span>
           </li>
           <li>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.68 19.79 19.79 0 01.03 1.05 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.11 7.82a16 16 0 006.06 6.06l1.18-1.18a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/>
             </svg>
-            <span>+33 1 23 45 67 80</span>
+            <span>+237 699 82 02 63</span>
           </li>
           <li>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
             </svg>
-            <span>contact@vinita-services.com</span>
+            <span>vinitaservicessarl@gmail.com</span>
           </li>
         </ul>
       </div>
@@ -73,7 +73,7 @@ const socials = [
     </div>
 
     <div class="footer__bottom">
-      <p>© 2024 Vinita Services. Tous droits réservés.</p>
+      <p>© 2026 Vinita Services. Tous droits réservés.</p>
       <div class="footer__bottom-links">
         <a href="#">Politique de Confidentialité</a>
         <a href="#">Conditions d'Utilisation</a>

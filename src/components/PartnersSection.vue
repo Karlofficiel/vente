@@ -27,7 +27,7 @@ const partners = [
 
       <div class="partners__fleet-banner">
         <img
-          src="https://images.pexels.com/photos/1638459/pexels-photo-1638459.jpeg?auto=compress&cs=tinysrgb&w=1920"
+          src="../assets/fleet.jpg"
           alt="Our Premium Fleet"
           class="partners__fleet-img"
         />
